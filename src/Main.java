@@ -22,23 +22,66 @@ public class Main {
 }
 
 class VList{
-    private VList next;
-    private ArrayList<Integer> numbers = new ArrayList();
+
+    private ArrayList<VList> referenceToLists = new ArrayList<>();
+    private Number values = new Number();
     private int currentValue = 0;
     private static int amountOfLists = 0;
     private final static int maxValue = 5;
 
+    VList(){
+        referenceToLists.add(this);
+    }
+
     public void add(Integer i){
-        if(currentValue < maxValue) {
-            numbers.add(currentValue, i);
+        if(referenceToLists.get(amountOfLists).getCurrentValue() < maxValue) {
+            referenceToLists.get(amountOfLists).values.add(i);
             currentValue++;
         } else {
             amountOfLists++;
             currentValue = 0;
-            next = new VList();
-            
-
+            referenceToLists.add(amountOfLists, new VList());
         }
     }
 
+
+    public ArrayList<VList> getReferenceToLists() {
+        return referenceToLists;
+    }
+
+    public void setReferenceToLists(ArrayList<VList> referenceToLists) {
+        this.referenceToLists = referenceToLists;
+    }
+
+    public int getCurrentValue() {
+        return currentValue;
+    }
+
+    public void setCurrentValue(int currentValue) {
+        this.currentValue = currentValue;
+    }
+
+    public static void setAmountOfLists(int amountOfLists) {
+        VList.amountOfLists = amountOfLists;
+    }
+
+    public static int getMaxValue() {
+        return maxValue;
+    }
+
+    public int getAmountOfLists(){ return amountOfLists;}
+}
+
+class Number{
+    Integer[] values = new Integer[5];
+    int currentIndex = 0;
+
+    public void add(Integer input){
+        if(currentIndex < 5) {
+            values[currentIndex] = input;
+            currentIndex++;
+        } else {
+            System.out.println("Number Index Over 4");
+        }
+    }
 }
