@@ -46,33 +46,9 @@ class VList{
 
         }
     }
-
-
-    public ArrayList<VList> getReferenceToLists() {
-        return referenceToLists;
-    }
-
-    public void setReferenceToLists(ArrayList<VList> referenceToLists) {
-        this.referenceToLists = referenceToLists;
-    }
-
     public int getCurrentValue() {
         return currentValue;
     }
-
-    public void setCurrentValue(int currentValue) {
-        this.currentValue = currentValue;
-    }
-
-    public static void setAmountOfLists(int amountOfLists) {
-        VList.amountOfLists = amountOfLists;
-    }
-
-    public static int getMaxValue() {
-        return maxValue;
-    }
-
-    public int getAmountOfLists(){ return amountOfLists;}
 }
 
 class Number{
