@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 
 /**
- * Created by Def on 02/02/2016.
+ * Created by PAS43 on 02/02/2016.
+ *
+ * VList
  */
 public class Main {
     public static void main(String[] args) {
@@ -18,7 +20,6 @@ public class Main {
         v.add(90);
         v.add(100);
     }
-
 }
 
 class VList{
@@ -41,6 +42,8 @@ class VList{
             amountOfLists++;
             currentValue = 0;
             referenceToLists.add(amountOfLists, new VList());
+            referenceToLists.get(amountOfLists).values.add(i);
+
         }
     }
 
