@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by PAS43 on 02/02/2016.
@@ -7,18 +8,18 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        VList v = new VList();
+        Main m = new Main();
+        m.test();
+        System.out.println("stop");
+    }
 
-        v.add(10);
-        v.add(20);
-        v.add(30);
-        v.add(40);
-        v.add(50);
-        v.add(60);
-        v.add(70);
-        v.add(80);
-        v.add(90);
-        v.add(100);
+    public void test(){
+        VList v = new VList();
+        Random r = new Random();
+        for(int i = 0; i < 1000; i++){
+            v.add(r.nextInt(100));
+        }
+
     }
 }
 
@@ -37,10 +38,10 @@ class VList{
     public void add(Integer i){
         if(referenceToLists.get(amountOfLists).getCurrentValue() < maxValue) {
             referenceToLists.get(amountOfLists).values.add(i);
-            currentValue++;
+            referenceToLists.get(amountOfLists).incCurrentValue();
         } else {
-            amountOfLists++;
-            currentValue = 0;
+            referenceToLists.get(amountOfLists).incCurrentValue();
+            referenceToLists.get(amountOfLists).setCurrentView(0);
             referenceToLists.add(amountOfLists, new VList());
             referenceToLists.get(amountOfLists).values.add(i);
 
@@ -48,6 +49,14 @@ class VList{
     }
     public int getCurrentValue() {
         return currentValue;
+    }
+
+    public void setCurrentView(int i){
+        this.currentValue = i;
+    }
+
+    public void incCurrentValue(){
+        currentValue += 1;
     }
 }
 
@@ -60,6 +69,7 @@ class Number{
             values[currentIndex] = input;
             currentIndex++;
         } else {
+            currentIndex = 0;
             System.out.println("Number Index Over 4");
         }
     }
